@@ -3,7 +3,7 @@ BubuDry - Smart Tumble Dryer Dashboard
 Full-featured web dashboard for a Hoover HLE C10TG via the hOn ecosystem.
 
 Features:
-  - Periodic polling of dryer state via hOn cloud API (every 30s by default)
+  - Hybrid live updates: MQTT push when available, with polling fallback
   - Progress bar with time remaining
   - Programme name, dry level, cycle phase
   - Door / water tank / filter alerts
@@ -816,6 +816,36 @@ HTML_TEMPLATE = r"""
       border-radius: 14px; padding: 8px; min-width: 180px;
       box-shadow: 0 8px 30px rgba(0,0,0,0.5); z-index: 10;
     }
+    #progMenu {
+      min-width: 260px;
+      max-height: min(60vh, 340px);
+      overflow: hidden;
+      display: none;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #progMenu.open { display: flex; }
+    .menu-search {
+      width: 100%;
+      background: #14213a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      padding: 10px 12px;
+      font-size: 1rem;
+      outline: none;
+    }
+    .menu-search:focus { border-color: var(--accent); }
+    .menu-list {
+      overflow-y: auto;
+      max-height: min(48vh, 260px);
+      padding-right: 2px;
+    }
+    .menu-empty {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      padding: 10px 12px;
+    }
     .dry-menu.open { display: block; }
     .dry-option {
       display: block; width: 100%; text-align: left;
@@ -1096,29 +1126,89 @@ setDryLevel(3);
 
 // ---- Programme picker ----
 let selectedProgramme = null;
+let _allProgrammes = [];
+
+function cleanProgrammeName(label) {
+  if (!label) return '';
+  return String(label)
+    .replace(/^iot[\\s._-]*/i, '')
+    .replace(/[_]+/g, ' ')
+    .replace(/\\s+/g, ' ')
+    .trim()
+    .replace(/\\b\\w/g, c => c.toUpperCase());
+}
 
 function toggleProgMenu() {
   $('progMenu').classList.toggle('open');
+  if ($('progMenu').classList.contains('open')) {
+    const input = $('progSearch');
+    if (input) input.focus();
+  }
 }
 function setProgramme(id, name) {
   selectedProgramme = id;
-  $('btnProg').textContent = 'Programme: ' + name;
+  $('btnProg').textContent = 'Programme: ' + cleanProgrammeName(name);
   $('progMenu').classList.remove('open');
   document.querySelectorAll('#progMenu .dry-option').forEach(o => {
     o.classList.toggle('active', o.dataset.prog === id);
   });
 }
+
+function renderProgrammeOptions(filterText='') {
+  const list = $('progOptions');
+  if (!list) return;
+  const needle = (filterText || '').toLowerCase().trim();
+  const filtered = _allProgrammes.filter(p => {
+    const display = cleanProgrammeName(p.name || p.id).toLowerCase();
+    const id = (p.id || '').toLowerCase();
+    return !needle || display.includes(needle) || id.includes(needle);
+  });
+
+  if (filtered.length === 0) {
+    list.innerHTML = '<div class=\"menu-empty\">No matching programmes</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map(p => {
+    const display = cleanProgrammeName(p.name || p.id);
+    const active = p.id === selectedProgramme ? ' active' : '';
+    return '<button class=\"dry-option' + active + '\" data-prog=\"' + p.id + '\">' + display + '</button>';
+  }).join('');
+}
+
 function buildProgMenu(programmes) {
   const menu = $('progMenu');
   if (!programmes || programmes.length === 0) return;
-  menu.innerHTML = programmes.map(p =>
-    '<button class="dry-option" data-prog="' + p.id + '" onclick="setProgramme(\'' + p.id + '\', \'' + p.name + '\')">' + p.name + '</button>'
-  ).join('');
+  _allProgrammes = programmes.map(p => ({ id: p.id, name: cleanProgrammeName(p.name || p.id) }));
+
+  if (!menu.dataset.initialized) {
+    menu.innerHTML = [
+      '<input type=\"text\" class=\"menu-search\" id=\"progSearch\" placeholder=\"Search programme...\" aria-label=\"Search programme\">',
+      '<div class=\"menu-list\" id=\"progOptions\"></div>'
+    ].join('');
+    menu.dataset.initialized = '1';
+
+    menu.addEventListener('click', function(e) {
+      const btn = e.target.closest('.dry-option');
+      if (!btn) return;
+      const id = btn.dataset.prog;
+      const prog = _allProgrammes.find(p => p.id === id);
+      if (prog) setProgramme(prog.id, prog.name);
+    });
+
+    $('progSearch').addEventListener('input', function() {
+      renderProgrammeOptions(this.value);
+    });
+  }
+
+  renderProgrammeOptions($('progSearch') ? $('progSearch').value : '');
+
   // Auto-select first programme if none selected
   if (!selectedProgramme) {
-    // Prefer cotton, else first available
-    const cotton = programmes.find(p => p.id.toLowerCase().includes('cotton'));
-    const pick = cotton || programmes[0];
+    // Prefer mixed, then cotton, else first available
+    const mixed = _allProgrammes.find(p => p.id.toLowerCase().includes('mixed'));
+    const cotton = _allProgrammes.find(p => p.id.toLowerCase().includes('cotton'));
+    const pick = mixed || cotton || _allProgrammes[0];
     setProgramme(pick.id, pick.name);
   }
 }
@@ -1334,7 +1424,7 @@ async function fetchState() {
   }
 }
 
-// Poll every 30 seconds as a safety net — live state arrives via MQTT push
+// Poll every 2 seconds to keep UI responsive between push/heartbeat updates
 fetchState();
 setInterval(fetchState, 2000);
 </script>
