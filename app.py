@@ -3,7 +3,7 @@ BubuDry - Smart Tumble Dryer Dashboard
 Full-featured web dashboard for a Hoover HLE C10TG via the hOn ecosystem.
 
 Features:
-  - Periodic polling of dryer state via hOn cloud API (every 30s by default)
+  - Hybrid live updates: MQTT push when available, with polling fallback
   - Progress bar with time remaining
   - Programme name, dry level, cycle phase
   - Door / water tank / filter alerts
@@ -1334,7 +1334,7 @@ async function fetchState() {
   }
 }
 
-// Poll every 30 seconds as a safety net — live state arrives via MQTT push
+// Poll every 2 seconds to keep UI responsive between push/heartbeat updates
 fetchState();
 setInterval(fetchState, 2000);
 </script>
