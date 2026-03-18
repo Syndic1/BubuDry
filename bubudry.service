@@ -1,0 +1,29 @@
+[Unit]
+Description=BubuDry Tumble Dryer Status Monitor
+# Wait for the network to be up before starting — we need internet for hOn
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=bubu
+WorkingDirectory=/home/bubu/laundry-observer/bubudry
+
+# Credentials are loaded from /home/pi/bubudry/.env by python-dotenv
+# Optional tuning (can also go in .env)
+#Environment="POLL_INTERVAL=60"
+#Environment="FLASK_PORT=5000"
+
+# Use the Python interpreter from inside the virtual environment
+ExecStart=/home/bubu/laundry-observer/venv/bin/python /home/bubu/laundry-observer/bubudry/app.py
+
+# Restart the service if it crashes, with a short delay
+Restart=on-failure
+RestartSec=10
+
+# Write logs to the system journal (view with: journalctl -u bubudry -f)
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target

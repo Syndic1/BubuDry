@@ -1,0 +1,281 @@
+2026-03-18 12:20:25  INFO      dryer-poller  BubuDry started — polling every 120s
+2026-03-18 12:20:25  INFO      MainThread  Dashboard at http://0.0.0.0:5000
+2026-03-18 12:20:25  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:20:25  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:20:37  INFO      Dummy-13  Lifecycle Attempting Connect - LifecycleAttemptingConnectData()
+2026-03-18 12:20:38  INFO      Dummy-13  Lifecycle Connection Success: LifecycleConnectSuccessData(connack_packet=ConnackPacket(session_present=False, reason_code=<ConnectReasonCode.SUCCESS: 0>, session_expiry_interval_sec=None, receive_maximum=100, maximum_qos=<QoS.AT_LEAST_ONCE: 1>, retain_available=True, maximum_packet_size=149504, assigned_client_identifier=None, topic_alias_maximum=8, reason_string=None, user_properties=None, wildcard_subscriptions_available=True, subscription_identifiers_available=False, shared_subscription_available=True, server_keep_alive_sec=1200, response_information=None, server_reference=None), negotiated_settings=NegotiatedSettings(maximum_qos=<QoS.AT_LEAST_ONCE: 1>, session_expiry_interval_sec=0, receive_maximum_from_server=100, maximum_packet_size_to_server=149504, topic_alias_maximum_to_server=8, topic_alias_maximum_to_client=0, server_keep_alive_sec=1200, retain_available=True, wildcard_subscriptions_available=True, subscription_identifiers_available=False, shared_subscriptions_available=True, rejoined_session=False, client_id='pyhOn_6d6e695d05da7abf'))
+2026-03-18 12:20:38  INFO      dryer-poller  Subscribed to topic $aws/events/presence/disconnected/14-08-08-92-98-d0
+2026-03-18 12:20:38  INFO      dryer-poller  Subscribed to topic $aws/events/presence/connected/14-08-08-92-98-d0
+2026-03-18 12:20:38  INFO      dryer-poller  Subscribed to topic haier/things/14-08-08-92-98-d0/event/appliancestatus/update
+2026-03-18 12:20:38  INFO      dryer-poller  Subscribed to topic haier/things/14-08-08-92-98-d0/event/discovery/update
+2026-03-18 12:20:46  INFO      dryer-poller  Connected — found: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:20:47  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:20:47  WARNING   dryer-poller  Could not load statistics: Event loop is closed
+2026-03-18 12:20:47  WARNING   dryer-poller  Could not load history: Event loop is closed
+2026-03-18 12:20:47  INFO      dryer-poller  Dryer: Active — 175 min remaining
+2026-03-18 12:21:22  INFO      dryer-poller  BubuDry started — polling every 120s
+2026-03-18 12:21:22  INFO      MainThread  Dashboard at http://0.0.0.0:5000
+2026-03-18 12:21:22  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:21:22  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:21:42  INFO      dryer-poller  Connected — found: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:21:49  INFO      dryer-poller  Dryer: Active — 175 min remaining
+2026-03-18 12:22:34  INFO      dryer-poller  BubuDry starting up (polling every 120s)
+2026-03-18 12:22:34  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:22:34  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:22:35  INFO      dryer-poller  BubuDry starting up (polling every 120s)
+2026-03-18 12:22:35  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:22:35  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:22:35  INFO      dryer-poller  BubuDry starting up (polling every 120s)
+2026-03-18 12:22:35  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:22:35  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:22:43  INFO      dryer-poller  BubuDry starting up (polling every 120s)
+2026-03-18 12:22:43  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:22:43  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:22:43  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:23:04  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:23:11  INFO      dryer-poller  Dryer: Active
+2026-03-18 12:25:11  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:25:11  WARNING   dryer-poller  Lost connection to hOn — retrying...
+2026-03-18 12:25:41  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:25:41  WARNING   dryer-poller  Still offline — reconnecting from scratch
+2026-03-18 12:32:39  INFO      dryer-poller  BubuDry starting up (polling every 120s)
+2026-03-18 12:32:39  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:32:39  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:32:39  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:32:58  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:33:05  INFO      dryer-poller  Dryer: Active
+2026-03-18 12:42:22  INFO      dryer-poller  BubuDry starting up
+2026-03-18 12:42:22  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:42:22  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:42:22  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:42:43  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:42:50  INFO      dryer-poller  Dryer: Active
+2026-03-18 12:51:12  INFO      dryer-poller  BubuDry starting up
+2026-03-18 12:51:12  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 12:51:12  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 12:51:12  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 12:51:32  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 12:51:33  INFO      dryer-poller  Live push updates active -- polling reduced to heartbeat
+2026-03-18 12:51:38  INFO      dryer-poller  Dryer: Active
+2026-03-18 13:07:14  INFO      dryer-poller  BubuDry starting up
+2026-03-18 13:07:14  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 13:07:14  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 13:07:14  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 13:07:35  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 13:07:36  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:07:36  INFO      dryer-poller  Live push updates active -- polling reduced to heartbeat
+2026-03-18 13:07:41  INFO      dryer-poller  Dryer: Ready
+2026-03-18 13:15:57  INFO      dryer-poller  BubuDry starting up
+2026-03-18 13:15:57  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 13:15:57  DEBUG     dryer-poller  Using proactor: IocpProactor
+2026-03-18 13:15:57  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 13:16:17  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 13:16:19  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:16:19  INFO      dryer-poller  Live push updates active -- polling reduced to heartbeat
+2026-03-18 13:16:24  INFO      dryer-poller  Dryer: Heating — 174 min remaining
+2026-03-18 13:16:49  DEBUG     Dummy-36  doorStatus raw=0 -> open=False
+2026-03-18 13:16:49  INFO      Dummy-36  Dryer: Heating (push update)
+2026-03-18 13:17:49  DEBUG     Dummy-36  doorStatus raw=0 -> open=False
+2026-03-18 13:17:49  INFO      Dummy-36  Dryer: Heating (push update)
+2026-03-18 13:18:49  DEBUG     Dummy-36  doorStatus raw=0 -> open=False
+2026-03-18 13:18:49  INFO      Dummy-36  Dryer: Heating (push update)
+2026-03-18 13:19:49  DEBUG     Dummy-36  doorStatus raw=0 -> open=False
+2026-03-18 13:19:49  INFO      Dummy-36  Dryer: Heating (push update)
+2026-03-18 13:20:30  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:20:53  DEBUG     Dummy-397  doorStatus raw=0 -> open=False
+2026-03-18 13:20:53  INFO      Dummy-397  Dryer: Heating (push update)
+2026-03-18 13:21:51  DEBUG     Dummy-434  doorStatus raw=0 -> open=False
+2026-03-18 13:21:51  INFO      Dummy-434  Dryer: Heating (push update)
+2026-03-18 13:22:53  DEBUG     Dummy-491  doorStatus raw=0 -> open=False
+2026-03-18 13:22:53  INFO      Dummy-491  Dryer: Heating (push update)
+2026-03-18 13:23:53  DEBUG     Dummy-543  doorStatus raw=0 -> open=False
+2026-03-18 13:23:53  INFO      Dummy-543  Dryer: Heating (push update)
+2026-03-18 13:24:13  INFO      dryer-poller  Command sent: pauseProgram
+2026-03-18 13:24:53  DEBUG     Dummy-612  doorStatus raw=0 -> open=False
+2026-03-18 13:24:53  INFO      Dummy-612  Dryer: Heating (push update)
+2026-03-18 13:25:36  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:25:53  DEBUG     Dummy-672  doorStatus raw=0 -> open=False
+2026-03-18 13:25:53  INFO      Dummy-672  Dryer: Heating (push update)
+2026-03-18 13:26:53  DEBUG     Dummy-724  doorStatus raw=0 -> open=False
+2026-03-18 13:26:53  INFO      Dummy-724  Dryer: Heating (push update)
+2026-03-18 13:27:25  DEBUG     Dummy-742  doorStatus raw=0 -> open=False
+2026-03-18 13:27:25  INFO      Dummy-742  Dryer: Heating (push update)
+2026-03-18 13:27:31  INFO      dryer-poller  Command sent: pauseProgram
+2026-03-18 13:27:33  INFO      dryer-poller  Command sent: pauseProgram
+2026-03-18 13:27:33  DEBUG     Dummy-748  doorStatus raw=0 -> open=False
+2026-03-18 13:27:33  INFO      Dummy-748  Dryer: Paused (push update)
+2026-03-18 13:27:37  INFO      dryer-poller  Command sent: resumeProgram
+2026-03-18 13:27:39  DEBUG     Dummy-755  doorStatus raw=0 -> open=False
+2026-03-18 13:27:39  INFO      Dummy-755  Dryer: Drying (push update)
+2026-03-18 13:28:20  INFO      dryer-poller  Command sent: pauseProgram
+2026-03-18 13:28:21  DEBUG     Dummy-789  doorStatus raw=0 -> open=False
+2026-03-18 13:28:21  INFO      Dummy-789  Dryer: Paused (push update)
+2026-03-18 13:28:31  INFO      dryer-poller  Command sent: resumeProgram
+2026-03-18 13:28:33  DEBUG     Dummy-804  doorStatus raw=0 -> open=False
+2026-03-18 13:28:33  INFO      Dummy-804  Dryer: Drying (push update)
+2026-03-18 13:29:33  DEBUG     Dummy-867  doorStatus raw=0 -> open=False
+2026-03-18 13:29:33  INFO      Dummy-867  Dryer: Drying (push update)
+2026-03-18 13:30:33  DEBUG     Dummy-922  doorStatus raw=0 -> open=False
+2026-03-18 13:30:33  INFO      Dummy-922  Dryer: Drying (push update)
+2026-03-18 13:30:38  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:30:43  INFO      dryer-poller  Dryer: Drying — 161 min remaining
+2026-03-18 13:31:35  DEBUG     Dummy-1006  doorStatus raw=0 -> open=False
+2026-03-18 13:31:35  INFO      Dummy-1006  Dryer: Drying (push update)
+2026-03-18 13:32:35  DEBUG     Dummy-1046  doorStatus raw=0 -> open=False
+2026-03-18 13:32:35  INFO      Dummy-1046  Dryer: Drying (push update)
+2026-03-18 13:33:35  DEBUG     Dummy-1079  doorStatus raw=0 -> open=False
+2026-03-18 13:33:35  INFO      Dummy-1079  Dryer: Drying (push update)
+2026-03-18 13:34:35  DEBUG     Dummy-1112  doorStatus raw=0 -> open=False
+2026-03-18 13:34:35  INFO      Dummy-1112  Dryer: Drying (push update)
+2026-03-18 13:35:35  DEBUG     Dummy-1146  doorStatus raw=0 -> open=False
+2026-03-18 13:35:35  INFO      Dummy-1146  Dryer: Drying (push update)
+2026-03-18 13:35:44  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:36:35  DEBUG     Dummy-1201  doorStatus raw=0 -> open=False
+2026-03-18 13:36:35  INFO      Dummy-1201  Dryer: Drying (push update)
+2026-03-18 13:37:35  DEBUG     Dummy-1263  doorStatus raw=0 -> open=False
+2026-03-18 13:37:35  INFO      Dummy-1263  Dryer: Drying (push update)
+2026-03-18 13:38:35  DEBUG     Dummy-1325  doorStatus raw=0 -> open=False
+2026-03-18 13:38:35  INFO      Dummy-1325  Dryer: Drying (push update)
+2026-03-18 13:39:35  DEBUG     Dummy-1387  doorStatus raw=0 -> open=False
+2026-03-18 13:39:35  INFO      Dummy-1387  Dryer: Drying (push update)
+2026-03-18 13:40:35  DEBUG     Dummy-1441  doorStatus raw=0 -> open=False
+2026-03-18 13:40:35  INFO      Dummy-1441  Dryer: Drying (push update)
+2026-03-18 13:40:46  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:41:37  DEBUG     Dummy-1475  doorStatus raw=0 -> open=False
+2026-03-18 13:41:37  INFO      Dummy-1475  Dryer: Drying (push update)
+2026-03-18 13:42:35  DEBUG     Dummy-1508  doorStatus raw=0 -> open=False
+2026-03-18 13:42:35  INFO      Dummy-1508  Dryer: Drying (push update)
+2026-03-18 13:43:37  DEBUG     Dummy-1541  doorStatus raw=0 -> open=False
+2026-03-18 13:43:37  INFO      Dummy-1541  Dryer: Drying (push update)
+2026-03-18 13:44:37  DEBUG     Dummy-1574  doorStatus raw=0 -> open=False
+2026-03-18 13:44:37  INFO      Dummy-1574  Dryer: Drying (push update)
+2026-03-18 13:45:37  DEBUG     Dummy-1618  doorStatus raw=0 -> open=False
+2026-03-18 13:45:37  INFO      Dummy-1618  Dryer: Drying (push update)
+2026-03-18 13:45:52  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:46:37  DEBUG     Dummy-1671  doorStatus raw=0 -> open=False
+2026-03-18 13:46:37  INFO      Dummy-1671  Dryer: Drying (push update)
+2026-03-18 13:47:37  DEBUG     Dummy-1717  doorStatus raw=0 -> open=False
+2026-03-18 13:47:37  INFO      Dummy-1717  Dryer: Drying (push update)
+2026-03-18 13:48:37  DEBUG     Dummy-1795  doorStatus raw=0 -> open=False
+2026-03-18 13:48:37  INFO      Dummy-1795  Dryer: Drying (push update)
+2026-03-18 13:49:37  DEBUG     Dummy-1857  doorStatus raw=0 -> open=False
+2026-03-18 13:49:37  INFO      Dummy-1857  Dryer: Drying (push update)
+2026-03-18 13:50:37  DEBUG     Dummy-1896  doorStatus raw=0 -> open=False
+2026-03-18 13:50:37  INFO      Dummy-1896  Dryer: Drying (push update)
+2026-03-18 13:50:54  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:51:37  DEBUG     Dummy-1929  doorStatus raw=0 -> open=False
+2026-03-18 13:51:37  INFO      Dummy-1929  Dryer: Drying (push update)
+2026-03-18 13:52:37  DEBUG     Dummy-1962  doorStatus raw=0 -> open=False
+2026-03-18 13:52:37  INFO      Dummy-1962  Dryer: Drying (push update)
+2026-03-18 13:53:37  DEBUG     Dummy-1996  doorStatus raw=0 -> open=False
+2026-03-18 13:53:37  INFO      Dummy-1996  Dryer: Drying (push update)
+2026-03-18 13:54:37  DEBUG     Dummy-2052  doorStatus raw=0 -> open=False
+2026-03-18 13:54:37  INFO      Dummy-2052  Dryer: Drying (push update)
+2026-03-18 13:55:39  DEBUG     Dummy-2112  doorStatus raw=0 -> open=False
+2026-03-18 13:55:39  INFO      Dummy-2112  Dryer: Drying (push update)
+2026-03-18 13:56:00  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 13:56:39  DEBUG     Dummy-2174  doorStatus raw=0 -> open=False
+2026-03-18 13:56:39  INFO      Dummy-2174  Dryer: Drying (push update)
+2026-03-18 13:57:39  DEBUG     Dummy-2235  doorStatus raw=0 -> open=False
+2026-03-18 13:57:39  INFO      Dummy-2235  Dryer: Drying (push update)
+2026-03-18 13:58:39  DEBUG     Dummy-2312  doorStatus raw=0 -> open=False
+2026-03-18 13:58:39  INFO      Dummy-2312  Dryer: Drying (push update)
+2026-03-18 13:59:39  DEBUG     Dummy-2403  doorStatus raw=0 -> open=False
+2026-03-18 13:59:39  INFO      Dummy-2403  Dryer: Drying (push update)
+2026-03-18 14:00:39  DEBUG     Dummy-2495  doorStatus raw=0 -> open=False
+2026-03-18 14:00:39  INFO      Dummy-2495  Dryer: Drying (push update)
+2026-03-18 14:01:01  ERROR     dryer-poller  {'error': {'message': 'Throughput exceeds the current capacity of your table or index. DynamoDB is automatically scaling your table or index so please try again shortly. If exceptions persist, check if you have a hot key: https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/bp-partition-key-design.html', 'code': 'ThrottlingException', 'time': '2026-03-18T14:01:01.243Z', 'requestId': 'QDMPC5QB1VC20610J65MBDPJINVV4KQNSO5AEMVJF66Q9ASUAAJG', 'statusCode': 400, 'retryable': True}}
+2026-03-18 14:01:01  WARNING   dryer-poller  Lost connection to hOn — retrying...
+2026-03-18 14:01:33  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:01:33  INFO      dryer-poller  Live push updates active -- polling reduced to heartbeat
+2026-03-18 14:01:39  DEBUG     Dummy-2586  doorStatus raw=0 -> open=False
+2026-03-18 14:01:39  INFO      Dummy-2586  Dryer: Drying (push update)
+2026-03-18 14:01:40  INFO      dryer-poller  Dryer: Drying — 131 min remaining
+2026-03-18 14:02:39  DEBUG     Dummy-2676  doorStatus raw=0 -> open=False
+2026-03-18 14:02:39  INFO      Dummy-2676  Dryer: Drying (push update)
+2026-03-18 14:03:39  DEBUG     Dummy-2767  doorStatus raw=0 -> open=False
+2026-03-18 14:03:39  INFO      Dummy-2767  Dryer: Drying (push update)
+2026-03-18 14:04:39  DEBUG     Dummy-2850  doorStatus raw=0 -> open=False
+2026-03-18 14:04:39  INFO      Dummy-2850  Dryer: Drying (push update)
+2026-03-18 14:05:39  DEBUG     Dummy-2911  doorStatus raw=0 -> open=False
+2026-03-18 14:05:39  INFO      Dummy-2911  Dryer: Drying (push update)
+2026-03-18 14:06:28  INFO      dryer-poller  Command sent: pauseProgram
+2026-03-18 14:06:29  DEBUG     Dummy-2963  doorStatus raw=0 -> open=False
+2026-03-18 14:06:29  INFO      Dummy-2963  Dryer: Paused (push update)
+2026-03-18 14:06:41  INFO      dryer-poller  Command sent: resumeProgram
+2026-03-18 14:06:42  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:06:42  INFO      dryer-poller  Dryer: Paused — 126 min remaining
+2026-03-18 14:06:43  DEBUG     Dummy-2981  doorStatus raw=0 -> open=False
+2026-03-18 14:06:43  INFO      Dummy-2981  Dryer: Drying (push update)
+2026-03-18 14:07:43  DEBUG     Dummy-3042  doorStatus raw=0 -> open=False
+2026-03-18 14:07:43  INFO      Dummy-3042  Dryer: Drying (push update)
+2026-03-18 14:08:43  DEBUG     Dummy-3103  doorStatus raw=0 -> open=False
+2026-03-18 14:08:43  INFO      Dummy-3103  Dryer: Drying (push update)
+2026-03-18 14:09:45  DEBUG     Dummy-3166  doorStatus raw=0 -> open=False
+2026-03-18 14:09:45  INFO      Dummy-3166  Dryer: Drying (push update)
+2026-03-18 14:10:45  DEBUG     Dummy-3201  doorStatus raw=0 -> open=False
+2026-03-18 14:10:45  INFO      Dummy-3201  Dryer: Drying (push update)
+2026-03-18 14:11:43  DEBUG     Dummy-3232  doorStatus raw=0 -> open=False
+2026-03-18 14:11:43  INFO      Dummy-3232  Dryer: Drying (push update)
+2026-03-18 14:11:43  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:11:48  INFO      dryer-poller  Dryer: Drying — 122 min remaining
+2026-03-18 14:12:45  DEBUG     Dummy-3265  doorStatus raw=0 -> open=False
+2026-03-18 14:12:45  INFO      Dummy-3265  Dryer: Drying (push update)
+2026-03-18 14:13:45  DEBUG     Dummy-3297  doorStatus raw=0 -> open=False
+2026-03-18 14:13:45  INFO      Dummy-3297  Dryer: Drying (push update)
+2026-03-18 14:14:45  DEBUG     Dummy-3358  doorStatus raw=0 -> open=False
+2026-03-18 14:14:45  INFO      Dummy-3358  Dryer: Drying (push update)
+2026-03-18 14:15:45  DEBUG     Dummy-3419  doorStatus raw=0 -> open=False
+2026-03-18 14:15:45  INFO      Dummy-3419  Dryer: Drying (push update)
+2026-03-18 14:16:45  DEBUG     Dummy-3464  doorStatus raw=0 -> open=False
+2026-03-18 14:16:45  INFO      Dummy-3464  Dryer: Drying (push update)
+2026-03-18 14:16:50  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:17:45  DEBUG     Dummy-3521  doorStatus raw=0 -> open=False
+2026-03-18 14:17:45  INFO      Dummy-3521  Dryer: Drying (push update)
+2026-03-18 14:18:45  DEBUG     Dummy-3559  doorStatus raw=0 -> open=False
+2026-03-18 14:18:45  INFO      Dummy-3559  Dryer: Drying (push update)
+2026-03-18 14:19:45  DEBUG     Dummy-3637  doorStatus raw=0 -> open=False
+2026-03-18 14:19:45  INFO      Dummy-3637  Dryer: Drying (push update)
+2026-03-18 14:20:45  DEBUG     Dummy-3715  doorStatus raw=0 -> open=False
+2026-03-18 14:20:45  INFO      Dummy-3715  Dryer: Drying (push update)
+2026-03-18 14:21:45  DEBUG     Dummy-3751  doorStatus raw=0 -> open=False
+2026-03-18 14:21:45  INFO      Dummy-3751  Dryer: Drying (push update)
+2026-03-18 14:21:52  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:22:45  DEBUG     Dummy-3796  doorStatus raw=0 -> open=False
+2026-03-18 14:22:45  INFO      Dummy-3796  Dryer: Drying (push update)
+2026-03-18 14:23:47  DEBUG     Dummy-3857  doorStatus raw=0 -> open=False
+2026-03-18 14:23:47  INFO      Dummy-3857  Dryer: Drying (push update)
+2026-03-18 14:24:47  DEBUG     Dummy-3890  doorStatus raw=0 -> open=False
+2026-03-18 14:24:47  INFO      Dummy-3890  Dryer: Drying (push update)
+2026-03-18 14:25:45  DEBUG     Dummy-3922  doorStatus raw=0 -> open=False
+2026-03-18 14:25:45  INFO      Dummy-3922  Dryer: Drying (push update)
+2026-03-18 14:26:47  DEBUG     Dummy-3956  doorStatus raw=0 -> open=False
+2026-03-18 14:26:47  INFO      Dummy-3956  Dryer: Drying (push update)
+2026-03-18 14:26:58  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:27:30  INFO      dryer-poller  Command sent: stopProgram
+2026-03-18 14:27:31  DEBUG     Dummy-3993  doorStatus raw=0 -> open=False
+2026-03-18 14:27:31  INFO      Dummy-3993  Dryer: Ready (push update)
+2026-03-18 14:28:03  DEBUG     Dummy-4027  doorStatus raw=1 -> open=True
+2026-03-18 14:28:03  INFO      Dummy-4027  Dryer: Ready (push update)
+2026-03-18 14:28:41  DEBUG     Dummy-4067  doorStatus raw=0 -> open=False
+2026-03-18 14:28:41  INFO      Dummy-4067  Dryer: Ready (push update)
+2026-03-18 14:28:51  DEBUG     Dummy-4078  doorStatus raw=1 -> open=True
+2026-03-18 14:28:51  INFO      Dummy-4078  Dryer: Ready (push update)
+2026-03-18 14:28:53  DEBUG     Dummy-4081  doorStatus raw=0 -> open=False
+2026-03-18 14:28:53  INFO      Dummy-4081  Dryer: Ready (push update)
+2026-03-18 14:29:31  DEBUG     Dummy-4121  doorStatus raw=1 -> open=True
+2026-03-18 14:29:31  INFO      Dummy-4121  Dryer: Ready (push update)
+2026-03-18 14:29:37  DEBUG     Dummy-4128  doorStatus raw=0 -> open=False
+2026-03-18 14:29:37  INFO      Dummy-4128  Dryer: Ready (push update)
+2026-03-18 14:32:00  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:32:05  INFO      dryer-poller  Dryer: Ready
+2026-03-18 14:34:36  DEBUG     Dummy-4436  doorStatus raw=0 -> open=False
+2026-03-18 14:34:36  INFO      Dummy-4436  Dryer: Ready (push update)
+2026-03-18 14:38:02  INFO      dryer-poller  BubuDry starting up
+2026-03-18 14:38:02  INFO      MainThread  Dashboard ready at http://0.0.0.0:5000
+2026-03-18 14:38:02  DEBUG     dryer-poller  Using selector: EpollSelector
+2026-03-18 14:38:03  INFO      dryer-poller  Connecting to hOn...
+2026-03-18 14:38:24  INFO      dryer-poller  Connected to hOn. Appliances: HLE C10TG-80, HLE C10TG-80
+2026-03-18 14:38:26  DEBUG     dryer-poller  doorStatus raw=0 -> open=False
+2026-03-18 14:38:26  INFO      dryer-poller  Live push updates active -- polling reduced to heartbeat
+2026-03-18 14:38:31  INFO      dryer-poller  Dryer: Ready

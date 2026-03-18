@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BubuDry - Technical Documentation</title>
+  <style>
+    :root {
+      --bg: #1a1a2e; --bg2: #16213e; --card: #1e2a47;
+      --text: #e0e0e0; --dim: #8892a8; --accent: #4fc3f7;
+      --green: #2ecc71; --red: #e74c3c; --orange: #f39c12;
+      --border: #2a3a5c; --code-bg: #0d1b2a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, 'Segoe UI', Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+      line-height: 1.7; padding: 0;
+    }
+
+    /* Sidebar navigation */
+    .sidebar {
+      position: fixed; top: 0; left: 0; width: 280px; height: 100vh;
+      background: var(--bg2); border-right: 1px solid var(--border);
+      overflow-y: auto; padding: 24px 16px; z-index: 100;
+    }
+    .sidebar h2 { color: var(--accent); font-size: 1.3rem; margin-bottom: 20px; }
+    .sidebar a {
+      display: block; color: var(--dim); text-decoration: none;
+      padding: 8px 12px; border-radius: 8px; font-size: 0.95rem;
+      margin-bottom: 2px; transition: all 0.2s;
+    }
+    .sidebar a:hover { color: var(--text); background: rgba(79,195,247,0.08); }
+    .sidebar a.section { font-weight: 700; color: var(--text); margin-top: 16px; font-size: 1.05rem; }
+    .sidebar .version { color: var(--dim); font-size: 0.85rem; margin-top: 20px; }
+
+    /* Main content */
+    .main { margin-left: 280px; padding: 40px 48px; max-width: 960px; }
+    @media (max-width: 768px) {
+      .sidebar { display: none; }
+      .main { margin-left: 0; padding: 20px; }
+    }
+
+    h1 { color: var(--accent); font-size: 2.2rem; margin-bottom: 8px; }
+    h2 {
+      color: var(--accent); font-size: 1.6rem; margin-top: 48px; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--border);
+    }
+    h3 { color: var(--text); font-size: 1.25rem; margin-top: 28px; margin-bottom: 10px; }
+    h4 { color: var(--dim); font-size: 1.05rem; margin-top: 20px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+    p { margin-bottom: 14px; }
+    .subtitle { color: var(--dim); font-size: 1.1rem; margin-bottom: 32px; }
+
+    /* Code blocks */
+    code {
+      background: var(--code-bg); color: var(--accent);
+      padding: 2px 7px; border-radius: 4px; font-size: 0.92em;
+      font-family: 'Fira Code', 'Consolas', monospace;
+    }
+    pre {
+      background: var(--code-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px 20px; overflow-x: auto;
+      margin: 14px 0 20px; line-height: 1.5;
+    }
+    pre code { background: none; padding: 0; color: var(--text); }
+
+    /* Tables */
+    table {
+      width: 100%; border-collapse: collapse; margin: 14px 0 24px;
+      font-size: 0.95rem;
+    }
+    th {
+      text-align: left; padding: 12px 14px; background: var(--bg2);
+      color: var(--accent); border-bottom: 2px solid var(--border);
+      font-weight: 600;
+    }
+    td {
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tr:hover td { background: rgba(79,195,247,0.03); }
+
+    /* Cards / callouts */
+    .card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px; margin: 16px 0;
+    }
+    .callout {
+      border-left: 4px solid var(--accent); padding: 14px 18px;
+      background: rgba(79,195,247,0.06); border-radius: 0 10px 10px 0;
+      margin: 14px 0;
+    }
+    .callout.warn { border-left-color: var(--orange); background: rgba(243,156,18,0.08); }
+    .callout.danger { border-left-color: var(--red); background: rgba(231,76,60,0.08); }
+    .callout.ok { border-left-color: var(--green); background: rgba(46,204,113,0.06); }
+    .callout-title { font-weight: 700; margin-bottom: 4px; }
+
+    /* Status badge inline */
+    .badge {
+      display: inline-block; padding: 3px 10px; border-radius: 20px;
+      font-size: 0.85rem; font-weight: 600; color: white;
+    }
+    .badge-green { background: var(--green); }
+    .badge-red { background: var(--red); }
+    .badge-orange { background: var(--orange); }
+    .badge-grey { background: #5a6270; }
+    .badge-blue { background: #3498db; }
+
+    /* Flow diagrams (text-based) */
+    .flow {
+      background: var(--code-bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 20px; font-family: monospace;
+      white-space: pre; overflow-x: auto; margin: 14px 0 20px;
+      line-height: 1.6; font-size: 0.9rem; color: var(--dim);
+    }
+    .flow strong { color: var(--accent); }
+    .flow em { color: var(--green); font-style: normal; }
+    .flow .err { color: var(--red); }
+
+    ul, ol { margin: 10px 0 14px 24px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); }
+    hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ============ SIDEBAR ============ -->
+<nav class="sidebar">
+  <h2>BubuDry Docs</h2>
+  <a class="section" href="#overview">Overview</a>
+  <a href="#architecture">Architecture</a>
+  <a href="#files">File Structure</a>
+  <a class="section" href="#data-flow">Data Flow</a>
+  <a href="#polling-loop">Polling Loop</a>
+  <a href="#state-machine">State Machine</a>
+  <a href="#reconnection">Reconnection Logic</a>
+  <a class="section" href="#api-data">API Data Reference</a>
+  <a href="#polled-attrs">Polled Attributes</a>
+  <a href="#machmode">Machine Mode Codes</a>
+  <a href="#phase-codes">Phase Codes</a>
+  <a href="#dry-levels">Dry Level Codes</a>
+  <a href="#programmes">Programmes</a>
+  <a href="#alerts-hw">Hardware Alerts</a>
+  <a href="#statistics">Statistics &amp; History</a>
+  <a class="section" href="#api-endpoints">HTTP API Endpoints</a>
+  <a href="#get-state">GET /api/state</a>
+  <a href="#post-command">POST /api/command</a>
+  <a class="section" href="#frontend">Frontend Dashboard</a>
+  <a href="#ui-states">UI States</a>
+  <a href="#controls">Controls Logic</a>
+  <a href="#tabs">Tabs</a>
+  <a class="section" href="#edge-cases">Known Edge Cases &amp; Bugs</a>
+  <a href="#bugs-fixed">Bugs Fixed</a>
+  <a href="#known-limitations">Known Limitations</a>
+  <a href="#potential-issues">Potential Issues</a>
+  <a class="section" href="#deployment">Deployment</a>
+  <a href="#setup">Setup Instructions</a>
+  <a href="#systemd">systemd Service</a>
+  <a href="#env-vars">Environment Variables</a>
+  <div class="version">BubuDry v1.0 &middot; 2026-03-18</div>
+</nav>
+
+<!-- ============ MAIN CONTENT ============ -->
+<div class="main">
+
+<h1>BubuDry Technical Documentation</h1>
+<p class="subtitle">
+  Complete reference for the Hoover HLE C10TG tumble dryer dashboard.<br>
+  Covers architecture, data sources, API mapping, edge cases, and deployment.
+</p>
+
+<!-- ======================================== -->
+<h2 id="overview">Overview</h2>
+
+<p>
+  BubuDry is a single-file Python web application that monitors a Hoover/Candy tumble dryer
+  via the <strong>hOn cloud API</strong> (using the <code>pyhOn</code> library) and presents
+  a dark-mode dashboard accessible from any browser on the local network.
+</p>
+
+<h3 id="architecture">Architecture</h3>
+
+<div class="flow">
+<strong>Raspberry Pi</strong>
+  +----------------------------------------------+
+  |  <em>polling_loop()</em>  (background thread)        |
+  |    |                                          |
+  |    |  every 30s: asyncio.run(fetch_full_state) |
+  |    |     |                                     |
+  |    |     +-- pyhOn ---> hOn Cloud API          |
+  |    |     |   (HTTPS)    (auth, appliance data) |
+  |    |     |                                     |
+  |    |     +-- parse_dryer_state()               |
+  |    |     +-- load_statistics()                 |
+  |    |     +-- load_command_history()             |
+  |    |                                           |
+  |    +---> shared <em>state{}</em> dict (with lock)      |
+  |                                                |
+  |  <em>Flask web server</em>  (main thread, port 5000)  |
+  |    GET  /           --> HTML dashboard         |
+  |    GET  /api/state  --> JSON state snapshot     |
+  |    POST /api/command -> send command to dryer   |
+  |                                                |
+  +----------------------------------------------+
+         |
+         | HTTP (LAN)
+         v
+  +------------------+
+  |  Browser (laptop, |
+  |  phone, tablet)   |
+  |  polls /api/state |
+  |  every 10 seconds |
+  +------------------+
+</div>
+
+<div class="callout">
+  <div class="callout-title">Important: No MQTT</div>
+  Despite the original design intent, BubuDry uses <strong>HTTP polling only</strong>, not MQTT.
+  The pyhOn library's MQTT support is experimental and unreliable on Raspberry Pi.
+  Status updates therefore have a latency of up to <code>POLL_INTERVAL</code> seconds (default 30).
+</div>
+
+<h3 id="files">File Structure</h3>
+
+<table>
+  <tr><th>File</th><th>Purpose</th></tr>
+  <tr><td><code>app.py</code></td><td>Entire application: backend, frontend HTML, API endpoints, polling loop</td></tr>
+  <tr><td><code>.env</code></td><td>Credentials (<code>HON_EMAIL</code>, <code>HON_PASSWORD</code>). Never committed to git.</td></tr>
+  <tr><td><code>requirements.txt</code></td><td>Python dependencies: <code>pyhon</code>, <code>flask</code>, <code>python-dotenv</code></td></tr>
+  <tr><td><code>bubudry.service</code></td><td>systemd unit file for auto-start on Raspberry Pi</td></tr>
+  <tr><td><code>BubuWine.gif</code></td><td>Bubu mascot image (left of dryer)</td></tr>
+  <tr><td><code>DuduWine.gif</code></td><td>Dudu mascot image (right of dryer)</td></tr>
+  <tr><td><code>.gitignore</code></td><td>Excludes <code>.env</code>, <code>__pycache__</code>, <code>venv/</code></td></tr>
+  <tr><td><code>docs.html</code></td><td>This file</td></tr>
+</table>
+
+
+<!-- ======================================== -->
+<h2 id="data-flow">Data Flow</h2>
+
+<h3 id="polling-loop">Polling Loop</h3>
+
+<p>A daemon thread runs <code>polling_loop()</code> which:</p>
+<ol>
+  <li>Calls <code>asyncio.run(fetch_full_state())</code> &mdash; creates a fresh event loop each cycle</li>
+  <li><code>_get_dryer()</code> returns (or creates) the hOn session and finds the tumble dryer appliance (type <code>"TD"</code>)</li>
+  <li><code>dryer.load_attributes()</code> refreshes all parameters from the cloud</li>
+  <li><code>parse_dryer_state()</code> extracts a flat dictionary from the pyhOn appliance object</li>
+  <li>Statistics, command history, and available programmes are loaded via separate API calls (each wrapped in try/except so a failure doesn't kill the poll)</li>
+  <li>The result is written to the shared <code>state</code> dict under <code>state_lock</code></li>
+</ol>
+
+<h4>Timing</h4>
+<table>
+  <tr><th>What</th><th>Interval</th><th>Configurable</th></tr>
+  <tr><td>Backend poll of hOn API</td><td>30s</td><td><code>POLL_INTERVAL</code> env var</td></tr>
+  <tr><td>Frontend poll of <code>/api/state</code></td><td>10s</td><td>Hardcoded in JS (<code>setInterval(fetchState, 10000)</code>)</td></tr>
+  <tr><td>Post-command refresh</td><td>1.5s delay</td><td>Hardcoded in JS (<code>setTimeout(fetchState, 1500)</code>)</td></tr>
+</table>
+
+<h3 id="state-machine">State Machine</h3>
+
+<p>The dryer's <code>machMode</code> parameter maps to UI states:</p>
+
+<div class="flow">
+  +-------+     Start      +----------+
+  | <em>Off</em>   | ------------> | <em>Running</em>  | --+
+  | (0)   |               | (1,2,6,7)|   |
+  +-------+               +----------+   | Pause
+      ^                        |          v
+      |                        |     +----------+
+      |       Finished         |     | <em>Paused</em>   |
+      +---- +----------+ <----+     | (3)      |
+            | <em>Finished</em> |             +----------+
+            | (4, 5)   |                  |
+            +----------+                  | Resume
+                                          v
+                                     +----------+
+                                     | <em>Running</em>  |
+                                     +----------+
+
+  At any state:
+    water_tank_full or filter_dirty --> <span class="err">Error / Attention</span>
+    errors != 0                     --> <span class="err">Error</span>
+    connection lost                 --> Unknown / Reconnecting
+</div>
+
+<h3 id="reconnection">Reconnection Logic</h3>
+
+<table>
+  <tr><th>Failure #</th><th>Action</th><th>Wait</th></tr>
+  <tr>
+    <td>1st</td>
+    <td>Keep existing session, retry quickly. Token refresh attempted on next <code>_get_dryer()</code> call.</td>
+    <td><code>min(30, POLL_INTERVAL/2)</code> seconds</td>
+  </tr>
+  <tr>
+    <td>2nd+</td>
+    <td>Destroy session (<code>_hon = None</code>), force full re-login on next attempt.</td>
+    <td><code>POLL_INTERVAL</code> seconds</td>
+  </tr>
+  <tr>
+    <td>Any failure</td>
+    <td>UI state is cleared to <span class="badge badge-grey">Reconnecting...</span> so stale "Running" is never shown.</td>
+    <td>&mdash;</td>
+  </tr>
+</table>
+
+
+<!-- ======================================== -->
+<h2 id="api-data">API Data Reference</h2>
+
+<h3 id="polled-attrs">Polled Attributes</h3>
+
+<p>
+  These are read from <code>appliance.attributes["parameters"][key]</code> via pyhOn
+  after each <code>dryer.load_attributes()</code> call:
+</p>
+
+<table>
+  <tr><th>pyhOn Key</th><th>Type</th><th>Description</th><th>Used For</th></tr>
+  <tr><td><code>machMode</code></td><td>int</td><td>Machine operating mode (0-7)</td><td>Main status badge, state machine</td></tr>
+  <tr><td><code>prPhase</code></td><td>int</td><td>Current programme phase (0-4)</td><td>"Phase: Heating" display</td></tr>
+  <tr><td><code>dryLevel</code></td><td>int</td><td>Dryness level setting (1-4, 11)</td><td>"Dry level: Cupboard Dry"</td></tr>
+  <tr><td><code>remainingTimeMM</code></td><td>int</td><td>Minutes remaining in cycle</td><td>Countdown timer, progress bar</td></tr>
+  <tr><td><code>doorStatus</code></td><td>0/1</td><td>Door open (1) or closed (0)</td><td>Door alert banner</td></tr>
+  <tr><td><code>waterTankStatus</code></td><td>0/1</td><td>Water tank full (1) or OK (0)</td><td>Red alert: "empty the tank"</td></tr>
+  <tr><td><code>dryFilterStatus</code></td><td>0/1</td><td>Filter dirty (1) or OK (0)</td><td>Warning: "clean the filter"</td></tr>
+  <tr><td><code>tumblingStatus</code></td><td>0/1</td><td>Drum currently tumbling</td><td>SVG animation trigger</td></tr>
+  <tr><td><code>anticrease</code></td><td>0/1</td><td>Anti-crease mode active</td><td>Status tab display</td></tr>
+  <tr><td><code>errors</code></td><td>int/str</td><td>Error code (0 = no error)</td><td>Generic error alert</td></tr>
+</table>
+
+<h4>Additional attribute sources</h4>
+<table>
+  <tr><th>Source</th><th>Key</th><th>Description</th></tr>
+  <tr><td><code>appliance.attributes["programName"]</code></td><td>programName</td><td>Internal programme identifier (e.g. "all_in_one")</td></tr>
+  <tr><td><code>appliance.attributes["commandHistory"]["command"]["attributes"]["prStr"]</code></td><td>prStr</td><td>Human-readable programme name from last command</td></tr>
+  <tr><td><code>appliance.attributes["activity"]</code></td><td>dryTimeMM, activityExecutionStarted</td><td>Total cycle time and start timestamp</td></tr>
+  <tr><td><code>appliance.attributes["lastConnEvent"]</code></td><td>category</td><td>"CONNECTED" or "DISCONNECTED"</td></tr>
+  <tr><td><code>appliance.pause</code></td><td>&mdash;</td><td>Boolean property indicating pause state</td></tr>
+</table>
+
+<h3 id="machmode">Machine Mode Codes (<code>machMode</code>)</h3>
+
+<table>
+  <tr><th>Code</th><th>Internal Key</th><th>Display Label</th><th>Badge Colour</th></tr>
+  <tr><td>0</td><td><code>off</code></td><td>Off</td><td><span class="badge badge-grey">Grey</span></td></tr>
+  <tr><td>1</td><td><code>running</code></td><td>Running</td><td><span class="badge badge-green">Green</span></td></tr>
+  <tr><td>2</td><td><code>running</code></td><td>Drying</td><td><span class="badge badge-green">Green</span></td></tr>
+  <tr><td>3</td><td><code>paused</code></td><td>Paused</td><td><span class="badge badge-orange">Orange</span></td></tr>
+  <tr><td>4</td><td><code>finished</code></td><td>Finished</td><td><span class="badge badge-blue">Blue</span></td></tr>
+  <tr><td>5</td><td><code>finished</code></td><td>Cycle Complete</td><td><span class="badge badge-blue">Blue</span></td></tr>
+  <tr><td>6</td><td><code>running</code></td><td>Delayed Start</td><td><span class="badge badge-green">Green</span></td></tr>
+  <tr><td>7</td><td><code>running</code></td><td>Running</td><td><span class="badge badge-green">Green</span></td></tr>
+  <tr><td>other</td><td><code>unknown</code></td><td>"Mode N"</td><td><span class="badge badge-grey">Grey</span></td></tr>
+</table>
+
+<div class="callout warn">
+  <div class="callout-title">Gap: Mode 6</div>
+  Mode 6 ("Delayed Start") was added based on reports from other Hoover TD models.
+  If your specific dryer never uses mode 6, it simply won't appear. No other undocumented
+  modes are known but the fallback shows "Mode N" for any unrecognised value.
+</div>
+
+<h3 id="phase-codes">Phase Codes (<code>prPhase</code>)</h3>
+
+<table>
+  <tr><th>Code</th><th>Label</th><th>Description</th></tr>
+  <tr><td>0</td><td>Idle</td><td>Not actively drying (off, or between phases)</td></tr>
+  <tr><td>1</td><td>Heating</td><td>Heater warming up</td></tr>
+  <tr><td>2</td><td>Drying</td><td>Active drying cycle</td></tr>
+  <tr><td>3</td><td>Cooling Down</td><td>Cool-down phase before finish</td></tr>
+  <tr><td>4</td><td>Anti-crease Tumbling</td><td>Periodic tumble after cycle ends to prevent creasing</td></tr>
+</table>
+
+<h3 id="dry-levels">Dry Level Codes (<code>dryLevel</code>)</h3>
+
+<table>
+  <tr><th>Code</th><th>Label</th><th>Description</th></tr>
+  <tr><td>1</td><td>Iron Dry</td><td>Slightly damp, ready for ironing</td></tr>
+  <tr><td>2</td><td>Hang Dry</td><td>Suitable for hanging/airing</td></tr>
+  <tr><td>3</td><td>Cupboard Dry</td><td>Fully dry, ready to put away (most common)</td></tr>
+  <tr><td>4</td><td>Extra Dry</td><td>Maximum drying for heavy items</td></tr>
+  <tr><td>11</td><td>Timed</td><td>Fixed-duration cycle (not sensor-based)</td></tr>
+</table>
+
+<h3 id="programmes">Known Programmes</h3>
+
+<table>
+  <tr><th>Internal ID</th><th>Display Name</th></tr>
+  <tr><td>all_in_one</td><td>All in One</td></tr>
+  <tr><td>cotton</td><td>Cotton</td></tr>
+  <tr><td>synthetics</td><td>Synthetics</td></tr>
+  <tr><td>mixed</td><td>Mixed</td></tr>
+  <tr><td>shirts</td><td>Shirts</td></tr>
+  <tr><td>wool</td><td>Wool</td></tr>
+  <tr><td>sport</td><td>Sport</td></tr>
+  <tr><td>duvet</td><td>Duvet</td></tr>
+  <tr><td>delicates</td><td>Delicates</td></tr>
+  <tr><td>rapid</td><td>Rapid 30'</td></tr>
+  <tr><td>refresh</td><td>Refresh</td></tr>
+  <tr><td>baby</td><td>Baby Care</td></tr>
+  <tr><td>hygiene</td><td>Hygiene+</td></tr>
+  <tr><td>xpress_dry_30</td><td>Express Dry 30'</td></tr>
+  <tr><td>xpress_dry_45</td><td>Express Dry 45'</td></tr>
+  <tr><td>xpress_dry_59</td><td>Express Dry 59'</td></tr>
+</table>
+
+<div class="callout">
+  <div class="callout-title">Programme discovery</div>
+  The app also dynamically discovers available programmes from
+  <code>dryer.commands["startProgram"].categories</code> at runtime. The table above
+  is a static fallback for display name mapping.
+</div>
+
+<h3 id="alerts-hw">Hardware Alerts</h3>
+
+<table>
+  <tr><th>Condition</th><th>Attribute</th><th>Alert Type</th><th>UI Behaviour</th></tr>
+  <tr>
+    <td>Water tank full</td><td><code>waterTankStatus != 0</code></td>
+    <td><span class="badge badge-red">Error</span></td>
+    <td>Red banner, status overridden to "Attention Needed"</td>
+  </tr>
+  <tr>
+    <td>Filter dirty</td><td><code>dryFilterStatus != 0</code></td>
+    <td><span class="badge badge-orange">Warning</span></td>
+    <td>Orange banner, status overridden to "Attention Needed"</td>
+  </tr>
+  <tr>
+    <td>Door open</td><td><code>doorStatus != 0</code></td>
+    <td><span class="badge badge-orange">Warning</span></td>
+    <td>Orange banner (does not override status)</td>
+  </tr>
+  <tr>
+    <td>Generic error</td><td><code>errors != 0</code></td>
+    <td><span class="badge badge-red">Error</span></td>
+    <td>Red banner with error code, status set to "Error"</td>
+  </tr>
+  <tr>
+    <td>Connection lost</td><td>Poll exception</td>
+    <td><span class="badge badge-orange">Warning</span></td>
+    <td>Orange banner, status set to "Reconnecting..."</td>
+  </tr>
+</table>
+
+<div class="callout ok">
+  <div class="callout-title">Alert priority (fixed in audit)</div>
+  Water tank and filter alerts can now appear <strong>simultaneously</strong>. Previously,
+  filter would silently overwrite the water tank message. Both alerts now display
+  independently as separate banners on the hero card.
+</div>
+
+<h3 id="statistics">Statistics &amp; History</h3>
+
+<h4>Statistics (from <code>hon.api.load_statistics()</code>)</h4>
+<table>
+  <tr><th>Field</th><th>Description</th><th>Displayed In</th></tr>
+  <tr><td><code>programsCounter</code></td><td>Total lifetime cycle count</td><td>Maintenance tab: "Total Cycles"</td></tr>
+  <tr><td><code>mostUsedPrograms[]</code></td><td>Array of {programName, counter}</td><td>Maintenance tab: "Most Used Programmes"</td></tr>
+</table>
+
+<h4>Maintenance (from <code>hon.api.load_maintenance()</code>)</h4>
+<table>
+  <tr><th>Field</th><th>Description</th><th>Displayed In</th></tr>
+  <tr><td><code>filterCleaning.remainingWashes</code></td><td>Washes until filter cleaning required</td><td>Maintenance tab: "Filter Status"</td></tr>
+  <tr><td><code>lastCheckup.date</code></td><td>Date of last maintenance checkup</td><td>Maintenance tab: "Last Checkup"</td></tr>
+</table>
+
+<h4>Command History (from <code>hon.api.load_command_history()</code>)</h4>
+<table>
+  <tr><th>Field</th><th>Description</th><th>Displayed In</th></tr>
+  <tr><td><code>command.programName</code></td><td>Programme used</td><td>History tab: "Programme" column</td></tr>
+  <tr><td><code>timestampAccepted</code></td><td>When the cycle was started</td><td>History tab: "Date" column</td></tr>
+  <tr><td><code>parameters.dryTimeMM</code></td><td>Total cycle duration in minutes</td><td>History tab: "Duration" column</td></tr>
+  <tr><td><code>parameters.dryLevel</code></td><td>Dry level used</td><td>History tab: "Dryness" column</td></tr>
+</table>
+
+<h4>Potentially Available but Unused</h4>
+<p>The hOn API likely exposes additional data that BubuDry does not currently poll or display:</p>
+<table>
+  <tr><th>Attribute</th><th>Description</th><th>Why Not Used</th></tr>
+  <tr><td><code>temp / temperatureLevel</code></td><td>Temperature setting</td><td>Not critical for status monitoring</td></tr>
+  <tr><td><code>delayTime</code></td><td>Delay start timer</td><td>Rarely used, adds complexity</td></tr>
+  <tr><td><code>childLock</code></td><td>Child lock active</td><td>Not relevant to target user</td></tr>
+  <tr><td><code>buzzer / soundEnable</code></td><td>End-of-cycle buzzer</td><td>Informational only</td></tr>
+  <tr><td><code>energyLabel</code></td><td>Energy consumption data</td><td>Could be added to maintenance tab</td></tr>
+  <tr><td><code>fwVersion / wfVersion</code></td><td>Firmware / Wi-Fi module version</td><td>Diagnostic only</td></tr>
+  <tr><td><code>rssi</code></td><td>Wi-Fi signal strength</td><td>Could help debug disconnections</td></tr>
+</table>
+
+
+<!-- ======================================== -->
+<h2 id="api-endpoints">HTTP API Endpoints</h2>
+
+<h3 id="get-state"><code>GET /api/state</code></h3>
+
+<p>Returns the current state snapshot as JSON. This is what the frontend polls every 10 seconds.</p>
+
+<pre><code>{
+  "status": "running",          // off | running | paused | finished | error | unknown
+  "status_label": "Drying",     // Human-readable label
+  "programme": "All in One",    // null when not running
+  "dry_level": "Cupboard Dry",  // null when not running
+  "phase": "Drying",            // null when not running
+  "remaining_minutes": 45,      // null when not applicable
+  "total_minutes": 120,         // null when not applicable
+  "cycle_started": "2026-03-18T10:30:00",
+  "door_open": false,
+  "water_tank_full": false,
+  "filter_dirty": false,
+  "error": null,                // Error message string or null
+  "connected": true,            // Backend can reach hOn API
+  "dryer_online": true,         // Dryer's last connection event was "CONNECTED"
+  "tumbling": true,
+  "paused": false,
+  "anti_crease": false,
+  "last_updated": "10:30:15",
+  "history": [
+    {"programme": "Cotton", "date": "2026-03-17 14:22", "duration": 90, "dry_level": "Cupboard Dry"},
+    ...
+  ],
+  "statistics": {
+    "total_cycles": 342,
+    "most_used": [{"programName": "all_in_one", "counter": 156}],
+    "filter_cleaning": {"remainingWashes": 12},
+    "last_checkup": {"date": "2026-01-15"}
+  },
+  "programmes": [
+    {"id": "all_in_one", "name": "All in One"},
+    {"id": "cotton", "name": "Cotton"},
+    ...
+  ]
+}</code></pre>
+
+<h3 id="post-command"><code>POST /api/command</code></h3>
+
+<p>Sends a command to the dryer. Body must be JSON.</p>
+
+<h4>Available commands</h4>
+<table>
+  <tr><th>Command</th><th>Body</th><th>Description</th></tr>
+  <tr>
+    <td><code>startProgram</code></td>
+    <td><code>{"command": "startProgram", "programme": "cotton", "dryLevel": 3}</code></td>
+    <td>Start a drying cycle. <code>programme</code> selects the programme, <code>dryLevel</code> sets dryness (1-4).</td>
+  </tr>
+  <tr>
+    <td><code>stopProgram</code></td>
+    <td><code>{"command": "stopProgram"}</code></td>
+    <td>Stop the current cycle immediately.</td>
+  </tr>
+  <tr>
+    <td><code>pauseProgram</code></td>
+    <td><code>{"command": "pauseProgram"}</code></td>
+    <td>Pause the current cycle.</td>
+  </tr>
+  <tr>
+    <td><code>resumeProgram</code></td>
+    <td><code>{"command": "resumeProgram"}</code></td>
+    <td>Resume a paused cycle.</td>
+  </tr>
+</table>
+
+<h4>Response</h4>
+<pre><code>// Success
+{"ok": true}
+
+// Failure
+{"ok": false, "error": "Command 'xyz' not available. Available: [...]"}</code></pre>
+
+
+<!-- ======================================== -->
+<h2 id="frontend">Frontend Dashboard</h2>
+
+<h3 id="ui-states">UI States</h3>
+
+<table>
+  <tr><th>Backend Status</th><th>Badge</th><th>Dryer Animation</th><th>Controls Shown</th></tr>
+  <tr>
+    <td><code>off</code></td>
+    <td><span class="badge badge-grey">Off</span></td>
+    <td>Static</td>
+    <td>Start, Dryness</td>
+  </tr>
+  <tr>
+    <td><code>running</code></td>
+    <td><span class="badge badge-green">Running/Drying</span></td>
+    <td>Spinning</td>
+    <td>Pause, Stop</td>
+  </tr>
+  <tr>
+    <td><code>paused</code></td>
+    <td><span class="badge badge-orange">Paused</span></td>
+    <td>Static</td>
+    <td>Resume, Stop</td>
+  </tr>
+  <tr>
+    <td><code>finished</code></td>
+    <td><span class="badge badge-blue">Finished</span></td>
+    <td>Static</td>
+    <td>Start, Dryness</td>
+  </tr>
+  <tr>
+    <td><code>error</code></td>
+    <td><span class="badge badge-red">Error/Attention</span></td>
+    <td>Static</td>
+    <td>Context-dependent</td>
+  </tr>
+  <tr>
+    <td><code>unknown</code></td>
+    <td><span class="badge badge-grey">Reconnecting...</span></td>
+    <td>Static</td>
+    <td>None (all hidden)</td>
+  </tr>
+</table>
+
+<h3 id="controls">Controls Logic</h3>
+
+<ul>
+  <li><strong>Start</strong> &mdash; visible when status is <code>off</code>, <code>finished</code>, or <code>unknown</code> AND <code>connected</code> is true. Sends <code>startProgram</code> with the currently selected <code>dryLevel</code>.</li>
+  <li><strong>Pause / Resume</strong> &mdash; visible when <code>running</code> or <code>paused</code> AND connected. Toggles between <code>pauseProgram</code> and <code>resumeProgram</code>.</li>
+  <li><strong>Stop</strong> &mdash; visible when active (running/paused) AND connected. Shows a <code>confirm()</code> dialog before sending.</li>
+  <li><strong>Dryness</strong> &mdash; visible when dryer is off/finished AND connected. Opens a pop-up picker for Iron/Hang/Cupboard/Extra dry. Only affects the <em>next</em> start command.</li>
+</ul>
+
+<h3 id="tabs">Tabs</h3>
+
+<table>
+  <tr><th>Tab</th><th>Contents</th><th>Update Frequency</th></tr>
+  <tr>
+    <td>Status</td>
+    <td>Machine state, door, water tank, filter, anti-crease, online status, cycle start time</td>
+    <td>Every 10s (frontend poll)</td>
+  </tr>
+  <tr>
+    <td>History</td>
+    <td>Last 10 cycles: programme, date, duration, dryness level</td>
+    <td>Every 30s (backend poll)</td>
+  </tr>
+  <tr>
+    <td>Maintenance</td>
+    <td>Total lifetime cycles, filter cleaning countdown, last checkup, most-used programmes</td>
+    <td>Every 30s (backend poll)</td>
+  </tr>
+</table>
+
+
+<!-- ======================================== -->
+<h2 id="edge-cases">Known Edge Cases &amp; Bugs</h2>
+
+<h3 id="bugs-fixed">Bugs Fixed in Audit (2026-03-18)</h3>
+
+<div class="card">
+  <h4>1. Stale "Running" status after disconnection</h4>
+  <p><strong>Problem:</strong> When the polling loop caught an exception, it set <code>state["connected"] = False</code> but left <code>state["status"]</code> as-is. The UI would show <span class="badge badge-green">Running</span> with "Dryer offline" indefinitely.</p>
+  <p><strong>Fix:</strong> On poll failure, <code>status</code> is now explicitly reset to <code>"unknown"</code> and <code>status_label</code> to <code>"Reconnecting..."</code>.</p>
+</div>
+
+<div class="card">
+  <h4>2. Water tank alert silently overwritten by filter alert</h4>
+  <p><strong>Problem:</strong> The priority override logic ran sequentially: <code>if water_tank: ... if dry_filter: ...</code>. When both were true, only the filter message was stored in <code>error_msg</code>.</p>
+  <p><strong>Fix:</strong> Both conditions are now collected into a list and joined with " | ". The frontend also renders them as separate alert banners (water_tank_full and filter_dirty are separate booleans).</p>
+</div>
+
+<div class="card">
+  <h4>3. <code>_hon_lock</code> declared but never used</h4>
+  <p><strong>Problem:</strong> A threading lock for the hOn session existed but was never acquired. The polling thread and Flask command handler could race on the <code>_hon</code> global &mdash; e.g., one sets <code>_hon = None</code> while the other is mid-API-call.</p>
+  <p><strong>Fix:</strong> <code>_get_dryer()</code> and the reconnect path now acquire <code>_hon_lock</code>.</p>
+</div>
+
+<div class="card">
+  <h4>4. Aggressive reconnection killing sessions</h4>
+  <p><strong>Problem:</strong> On the very first poll failure, the code set <code>_hon = None</code>, forcing a full re-login. This is slow (~3-5s) and can hit hOn rate limits.</p>
+  <p><strong>Fix:</strong> First failure retries quickly without destroying the session. Auth token refresh is attempted. Only after 2+ consecutive failures is the session destroyed.</p>
+</div>
+
+<div class="card">
+  <h4>5. Missing machMode 6</h4>
+  <p><strong>Problem:</strong> <code>MACH_MODE_MAP</code> had codes 0-5, 7 but not 6. Mode 6 ("Delayed Start") would show as "Mode 6" / unknown.</p>
+  <p><strong>Fix:</strong> Added <code>6: ("running", "Delayed Start")</code>.</p>
+</div>
+
+<div class="card">
+  <h4>6. Unused imports</h4>
+  <p><strong>Problem:</strong> <code>json</code>, <code>Response</code>, and <code>send_from_directory</code> were imported but never used.</p>
+  <p><strong>Fix:</strong> Removed.</p>
+</div>
+
+<div class="card">
+  <h4>7. Docstring claimed MQTT support</h4>
+  <p><strong>Problem:</strong> Module docstring said "Real-time MQTT status updates" but the app only polls HTTP.</p>
+  <p><strong>Fix:</strong> Updated docstring to accurately describe polling-based architecture.</p>
+</div>
+
+<div class="card">
+  <h4>8. systemd service hardcoded credentials</h4>
+  <p><strong>Problem:</strong> <code>bubudry.service</code> had <code>Environment="HON_EMAIL=..."</code> lines that needed manual editing, even though <code>.env</code> support was added.</p>
+  <p><strong>Fix:</strong> Service file now relies on python-dotenv reading from <code>.env</code>.</p>
+</div>
+
+<h3 id="known-limitations">Known Limitations</h3>
+
+<div class="card">
+  <h4>Start command sends no programme</h4>
+  <p>The "Start" button calls <code>sendCommand('startProgram')</code> without a programme name. This relies on the dryer/pyhOn using a default programme. If no default exists, the command may fail or be rejected. A programme picker could be added if needed.</p>
+</div>
+
+<div class="card">
+  <h4><code>lastConnEvent</code> can be stale</h4>
+  <p>The dryer's online/offline status comes from <code>lastConnEvent.category</code>. This event may not update in real-time &mdash; the dryer could lose Wi-Fi without pushing a "DISCONNECTED" event. The green dot may show "connected" even when the dryer is actually unreachable.</p>
+</div>
+
+<div class="card">
+  <h4>No command debounce</h4>
+  <p>Rapid button clicks will send multiple commands. The 1.5s refresh delay after a command helps but doesn't prevent it. For an elderly user this is unlikely to be an issue.</p>
+</div>
+
+<div class="card">
+  <h4><code>asyncio.run()</code> per request</h4>
+  <p>Both the polling loop and Flask command handler call <code>asyncio.run()</code>, which creates a new event loop each time. This works correctly but is slightly wasteful. A persistent event loop running in a dedicated thread would be more efficient, but adds complexity not justified for this use case.</p>
+</div>
+
+<h3 id="potential-issues">Potential Issues to Watch</h3>
+
+<div class="card">
+  <h4>hOn API rate limiting</h4>
+  <p>Polling every 30 seconds makes ~2,880 API calls/day. Haier/Candy's hOn backend does not publicly document rate limits. If they throttle, increase <code>POLL_INTERVAL</code> to 60 or 120.</p>
+</div>
+
+<div class="card">
+  <h4>hOn API authentication changes</h4>
+  <p>The pyhOn library reverse-engineers the hOn mobile app's API. Authentication flow can break when Haier updates their backend. Keep <code>pyhon</code> updated (<code>pip install --upgrade pyhon</code>). Facebook-authenticated accounts may have intermittent issues &mdash; a direct email/password hOn account is more reliable.</p>
+</div>
+
+<div class="card">
+  <h4>Memory on Raspberry Pi</h4>
+  <p>Flask + pyhOn + aiohttp (pyhOn dependency) typically use ~60-80 MB RSS. Well within the 1 GB Pi's capacity, but avoid running other heavy services alongside it.</p>
+</div>
+
+<div class="card">
+  <h4>Tab switching fragility</h4>
+  <p>The <code>switchTab()</code> function matches tabs by comparing <code>btn.textContent.toLowerCase()</code> with the tab name. If the tab button text is ever changed (e.g., abbreviated for mobile), the matching will break. This could be improved with <code>data-tab</code> attributes.</p>
+</div>
+
+
+<!-- ======================================== -->
+<h2 id="deployment">Deployment</h2>
+
+<h3 id="setup">Setup Instructions</h3>
+
+<pre><code># On the Raspberry Pi:
+cd /home/pi
+git clone &lt;your-repo&gt; bubudry   # or scp the files across
+cd bubudry
+
+# Create virtual environment
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Create credentials file
+cat > .env << 'EOF'
+HON_EMAIL=your@email.com
+HON_PASSWORD=your_password_here
+EOF
+chmod 600 .env   # restrict permissions
+
+# Test it works
+python app.py
+# Open http://raspberrypi.local:5000 in a browser</code></pre>
+
+<h3 id="systemd">systemd Service</h3>
+
+<pre><code># Install the service
+sudo cp bubudry.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable bubudry    # start on boot
+sudo systemctl start bubudry     # start now
+
+# Useful commands
+sudo systemctl status bubudry    # check if running
+journalctl -u bubudry -f         # live log tail
+sudo systemctl restart bubudry   # restart after changes</code></pre>
+
+<h3 id="env-vars">Environment Variables</h3>
+
+<table>
+  <tr><th>Variable</th><th>Default</th><th>Description</th></tr>
+  <tr><td><code>HON_EMAIL</code></td><td><em>required</em></td><td>hOn account email address</td></tr>
+  <tr><td><code>HON_PASSWORD</code></td><td><em>required</em></td><td>hOn account password</td></tr>
+  <tr><td><code>POLL_INTERVAL</code></td><td>30</td><td>Seconds between hOn API polls</td></tr>
+  <tr><td><code>FLASK_PORT</code></td><td>5000</td><td>HTTP port for the dashboard</td></tr>
+</table>
+
+<p>These can be set in the <code>.env</code> file, in the systemd service file, or as regular shell environment variables.</p>
+
+<hr>
+<p style="color: var(--dim); text-align: center; padding: 20px 0;">
+  BubuDry Documentation &middot; Generated 2026-03-18 &middot; For the Hoover HLE C10TG via hOn/pyhOn
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# BubuDry dependencies
+# Install with:  pip install -r requirements.txt
+
+# hOn smart appliance API client
+pyhon==0.17.5
+
+# Lightweight web framework
+flask==3.1.0
+
+# Load credentials from .env file
+python-dotenv
